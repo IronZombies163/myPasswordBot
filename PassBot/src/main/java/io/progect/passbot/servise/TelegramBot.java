@@ -32,7 +32,7 @@ import java.util.concurrent.*;
 @Slf4j
 @Component
 
-public class TelegramBot extends TelegramLongPollingBot { //класс со всем бекондом бота
+public class TelegramBot extends TelegramLongPollingBot { 
    @Autowired
     UserRepository userRepository;
    @Autowired
@@ -104,7 +104,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
 
                     case "сохранить": savePassword(chatId); break;
                     case "удаление паролей": deleteMenuKeyboard(chatId, "Внимание! После удаления пароли нельзя восстановить =("); break;
-                    //case "количество паролей": countPass(chatId); break;
+                   
                     case "назад": mainMenuKeyboard(chatId, okayEmoji); break;
                     case "отмена": deleteMenuKeyboard(chatId, checkMark);break;
                     case "Отмена": deleteMenuKeyboard(chatId, okayEmoji); break;
@@ -122,7 +122,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
 
                     case "удалить все пароли": deleteAllPassword(chatId);break;
                     case "удалить один пароль":
-                        deleteMode = true; // Активируем режим удаления паролей
+                        deleteMode = true; 
                         deleteKeyboard(chatId);
                         break;
 
@@ -149,7 +149,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
                         selectionWindow(chatId);
                         checkup(chatId);
 
-                        //считает кол-во сгенерированных паролей
+                       
                         User user= userRepository.findById(chatId).orElse(null);
                         Objects.requireNonNull(user).incrementCountPass();
                         userRepository.save(user);
@@ -171,6 +171,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
 
             }
     }
+   
     private void handleDeleteCommand(long chatId, String userInput) {
         if ("удалить все пароли".equalsIgnoreCase(userInput)) {
 
@@ -197,6 +198,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
                         "паролей увеличин до 15 "+EmojiParser.parseToUnicode(":relaxed:"), chatId);
             }
         }
+   
         private void rewritePassword(long chatId) {
 
             int countSavePassword = userServise.getUserSavePasswordCount(chatId);
@@ -210,7 +212,6 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
                 }
 
                 try {
-
                     userServise.deletePasswordById(idSavePassword.get(9));
                     String saveMessage = userPass.get(chatId);
                     userServise.setSavePassword(chatId, saveMessage);
@@ -235,7 +236,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
             replyKeyboardMarkup.setSelective(true);
             replyKeyboardMarkup.setResizeKeyboard(true);
             replyKeyboardMarkup.setOneTimeKeyboard(false);
-            //создание кнопок
+           
             List<KeyboardRow> keyboardRows=new ArrayList<>();
             KeyboardRow secondRow= new KeyboardRow();
             secondRow.add("новый пароль");
@@ -311,7 +312,7 @@ private final String okayEmoji=EmojiParser.parseToUnicode(":ok:");
             replyKeyboardMarkup.setResizeKeyboard(true);
             replyKeyboardMarkup.setOneTimeKeyboard(false);
 
-            //создание кнопок
+            
             List<KeyboardRow> keyboardRows = new ArrayList<>();
             KeyboardRow row = new KeyboardRow();
 
