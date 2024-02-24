@@ -18,9 +18,7 @@ public interface UserServise {
     @Transactional
     void deleteAllPassword(Long chatId);
     @Transactional
-  List<SavePass> getAllSavePass(Long chatId);
+    List<SavePass> getAllSavePass(Long chatId);
     @Transactional
     void setSavePassword(Long chatId, String password);
-    @Transactional
-     User getUserByChatId(Long chatId);
-}
+
