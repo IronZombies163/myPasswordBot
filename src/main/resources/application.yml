@@ -1,0 +1,17 @@
+bot:
+  name: passZombiesBot
+  token: changeit
+  owner: changeit
+
+##daataBase
+spring:
+  datasource:
+    url: jdbc:mysql://local_host:3306/tg_bot
+    username: changeit
+    password: changeit
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update

@@ -1,21 +1,21 @@
-package io.progect.passbot.servise.impl;
+package io.project.passbot.servise.impl;
 
-import io.progect.passbot.Exception.PasswordSaveException;
-import io.progect.passbot.model.SavePass;
-import io.progect.passbot.model.User;
-import io.progect.passbot.repository.PasswordRepository;
-import io.progect.passbot.repository.UserRepository;
+import io.project.passbot.exception.PasswordSaveException;
+import io.project.passbot.model.SavePass;
+import io.project.passbot.model.User;
+import io.project.passbot.repository.PasswordRepository;
+import io.project.passbot.repository.UserRepository;
 
-import io.progect.passbot.servise.UserServise;
-import jakarta.transaction.Transactional;
+import io.project.passbot.servise.UserServise;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiseImpl implements UserServise {
 
     private final PasswordRepository passwordRepository;
@@ -52,7 +52,6 @@ public class UserServiseImpl implements UserServise {
     }
 
     @Override
-    @Transactional
     public void deleteAllPassword(Long chatId) {
        passwordRepository.deleteByUser_ChatId(chatId);
     }
@@ -79,10 +78,6 @@ public class UserServiseImpl implements UserServise {
         }
     }
 
-    @Override
-    public User getUserByChatId(Long chatId) {
-        return repository.findByChatId(chatId);
-    }
 }
 
 
