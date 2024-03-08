@@ -1,6 +1,7 @@
-package io.progect.passbot.config;
+package io.project.passbot.config;
 
-import io.progect.passbot.servise.TelegramBot;
+import io.project.passbot.servise.TelegramBot;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -10,14 +11,15 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Component
+@RequiredArgsConstructor
 public class BotInitializer {
-    @Autowired
-    TelegramBot telegramBot;
+
+    private TelegramBot telegramBot;
 
     @EventListener({ContextRefreshedEvent.class})
-    private void unit () throws TelegramApiException{
-        TelegramBotsApi telegramBotsApi= new TelegramBotsApi(DefaultBotSession.class);
-        try{
+    private void unit() throws TelegramApiException {
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+        try {
             telegramBotsApi.registerBot(telegramBot);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);

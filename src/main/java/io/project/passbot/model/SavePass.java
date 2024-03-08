@@ -1,11 +1,15 @@
-package io.progect.passbot.model;
+package io.project.passbot.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Timestamp;
-@Data
-@Entity(name = "passwordsDataTable")
+@Getter
+@EqualsAndHashCode
+@Setter
+@Entity(name = "passwordsData")
 public class SavePass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +17,11 @@ public class SavePass {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name="chat_id")
+    @JoinColumn(name = "chat_id")
     private User user;
 
     @Override
     public String toString() {
-        return  password;
+        return password;
     }
 }
